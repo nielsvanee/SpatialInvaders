@@ -11,14 +11,15 @@ import javafx.scene.text.FontWeight;
 public class TitleScene extends StaticScene {
     @Override
     public void setupScene() {
-
+        setBackgroundColor(Color.BLACK);
     }
 
     @Override
     public void setupEntities() {
-        TextEntity title = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 2),"Spatial Invaders");
+        TextEntity title = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 3),"Spatial Invaders");
         title.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        title.setFill(Color.AZURE);
+        title.setFill(Color.BLUEVIOLET);
         title.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
+        addEntity(title);
     }
 }
