@@ -22,6 +22,6 @@ public class SpatialInvaders extends YaegerGame
 
     @Override
     public void setupScenes() {
-        addScene(0, new TitleScene());
+        addScene(0, new TitleScene(this));
     }
 }
