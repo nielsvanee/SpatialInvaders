@@ -2,6 +2,7 @@ package org.example;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
+import org.example.scenes.GameScene;
 import org.example.scenes.TitleScene;
 
 /**
@@ -23,5 +24,6 @@ public class SpatialInvaders extends YaegerGame
     @Override
     public void setupScenes() {
         addScene(0, new TitleScene(this));
+        addScene(1, new GameScene());
     }
 }
