@@ -52,4 +52,8 @@ public class Spaceship extends DynamicSpriteEntity implements KeyListener, Scene
     public void takeDamage() {
         health--;
     }
+
+    public Coordinate2D getLocation() {
+        return this.getLocationInScene();
+    }
 }

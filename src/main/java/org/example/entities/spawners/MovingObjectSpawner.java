@@ -3,21 +3,24 @@ package org.example.entities.spawners;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import org.example.entities.Asteroid;
+import org.example.scenes.GameScene;
 
 import java.util.Random;
 
 public class MovingObjectSpawner extends EntitySpawner {
 
+    private final GameScene game;
     private final double sceneWidth;
 
-    public MovingObjectSpawner(double sceneWidth, long intervalInMs) {
+    public MovingObjectSpawner(double sceneWidth, long intervalInMs, GameScene game) {
         super(intervalInMs);
         this.sceneWidth = sceneWidth;
+        this.game = game;
     }
 
     @Override
     protected void spawnEntities() {
-        spawn(new Asteroid(getRandomLocation()));
+        spawn(new Asteroid(getRandomLocation(), game));
     }
 
     private Coordinate2D getRandomLocation() {
