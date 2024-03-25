@@ -18,7 +18,7 @@ public class Spaceship extends DynamicSpriteEntity implements KeyListener, Scene
 
     private int health;
     private int speedmultiplier;
-    private GameScene game;
+    private final GameScene game;
 
     public Spaceship(Coordinate2D initialLocation, Size size, int startHealth, GameScene game) {
         super("entities/spaceship.png", initialLocation, size);
@@ -57,6 +57,10 @@ public class Spaceship extends DynamicSpriteEntity implements KeyListener, Scene
     public void takeDamage() {
         health--;
         game.setHealthText(health);
+
+        if (health <= 0) {
+            game.gameOver();
+        }
     }
 
     public void setSpeedmultiplier(int speedmultiplier) {
@@ -67,7 +71,7 @@ public class Spaceship extends DynamicSpriteEntity implements KeyListener, Scene
         return this.getLocationInScene();
     }
 
-    public int getHealth() {
-        return health;
+    public void setScoreMultiplier(int i) {
+        game.setScoreMultiplier(i);
     }
 }

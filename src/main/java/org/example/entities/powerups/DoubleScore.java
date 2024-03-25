@@ -2,20 +2,19 @@ package org.example.entities.powerups;
 
 import org.example.entities.Spaceship;
 
-public class Speed implements Powerup {
-
+public class DoubleScore implements Powerup{
     @Override
     public void activate(Spaceship s) {
-        s.setSpeedmultiplier(2);
+        s.setScoreMultiplier(2);
     }
 
     @Override
     public void deactivate(Spaceship s) {
-        s.setSpeedmultiplier(1);
+        s.setScoreMultiplier(1);
     }
 
     @Override
     public String toString() {
-        return "Speed";
+        return "2x Score";
     }
 }

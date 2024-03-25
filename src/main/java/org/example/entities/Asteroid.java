@@ -1,11 +1,7 @@
 package org.example.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
-import com.github.hanyaeger.api.entities.Newtonian;
-import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
-import com.github.hanyaeger.api.scenes.SceneBorder;
 import org.example.scenes.GameScene;
 
 import java.util.List;
