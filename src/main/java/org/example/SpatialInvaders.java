@@ -16,6 +16,8 @@ public class SpatialInvaders extends YaegerGame
 
     private final GameSettings difficulty = new Medium();
 
+    private final TitleScene titleScene = new TitleScene(this);
+
     public static void main( String[] args ) {
         launch(args);
     }
@@ -28,7 +30,11 @@ public class SpatialInvaders extends YaegerGame
 
     @Override
     public void setupScenes() {
-        addScene(0, new TitleScene(this));
+        addScene(0, titleScene);
         addScene(1, new GameScene(this, difficulty));
+    }
+
+    public void setScore(int score) {
+        titleScene.setScore(score);
     }
 }

@@ -6,24 +6,30 @@ import org.example.scenes.GameScene;
 
 import java.util.List;
 
-public class Asteroid extends FallingObject {
+public class Debris extends FallingObject {
 
-    public Asteroid(Coordinate2D initialLocation, GameScene game) {
-        super("entities/asteroid.png", initialLocation, game);
+    private int health;
+
+    public Debris(Coordinate2D initialLocation, GameScene game) {
+        super("entities/debris.png", initialLocation, game);
+        this.health = 2;
     }
 
     @Override
     public void onCollision(List<Collider> list) {
         Collider c = list.getFirst();
         if (c instanceof Spaceship s) {
-            s.takeDamage(1);
+            s.takeDamage(2);
             this.remove();
         }
 
         if (c instanceof Bullet b) {
+            health--;
             b.remove();
-            game.addScore(1);
-            this.remove();
+            if (health == 0) {
+                game.addScore(3);
+                this.remove();
+            }
         }
     }
 }

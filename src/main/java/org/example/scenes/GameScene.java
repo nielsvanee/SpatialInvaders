@@ -98,6 +98,8 @@ public class GameScene extends DynamicScene implements EntitySpawnerContainer {
     }
 
     public void gameOver() {
+        spatialInvaders.setScore(score);
+        score = 0;
         spatialInvaders.setActiveScene(0);
     }
 

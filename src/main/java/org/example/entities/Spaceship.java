@@ -24,7 +24,7 @@ public class Spaceship extends DynamicSpriteEntity implements KeyListener, Scene
         super("entities/spaceship.png", initialLocation, size);
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setGravityConstant(0);
-        setFrictionConstant(0.03);
+        setFrictionConstant(0.04);
 
         this.health = startHealth;
         this.speedmultiplier = 1;
@@ -54,8 +54,8 @@ public class Spaceship extends DynamicSpriteEntity implements KeyListener, Scene
         }
     }
 
-    public void takeDamage() {
-        health--;
+    public void takeDamage(int i) {
+        health -= i;
         game.setHealthText(health);
 
         if (health <= 0) {

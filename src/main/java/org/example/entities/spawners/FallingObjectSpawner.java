@@ -3,6 +3,7 @@ package org.example.entities.spawners;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import org.example.entities.Asteroid;
+import org.example.entities.Debris;
 import org.example.entities.FallingObject;
 import org.example.entities.RandomPowerup;
 import org.example.scenes.GameScene;
@@ -29,6 +30,8 @@ public class FallingObjectSpawner extends EntitySpawner {
         
         if (randomNumber == 1)
             fallingObject = new RandomPowerup(getRandomLocation(), game);
+        else if (randomNumber == 2)
+            fallingObject = new Debris(getRandomLocation(), game);
         else
             fallingObject = new Asteroid(getRandomLocation(), game);
 
