@@ -41,6 +41,42 @@ public class GameScene extends DynamicScene implements EntitySpawnerContainer {
     }
 
     public void addScore(int i) {
-        score += i;
+        score += i * scoreMultiplier;
+        scoreText.updateScore(score);
+    }
+
+    public void addRandomPowerup() {
+        if (powerup != null) {
+            powerup.deactivate(player);
+        }
+
+        Random r = new Random();
+        int randomNumber = r.nextInt(1, 3);
+
+        switch(randomNumber) {
+            case 1:
+                powerup = new Speed();
+                break;
+            case 2:
+                powerup = new DoubleScore();
+                break;
+        }
+        powerup.activate(player);
+        powerupText.updatePowerup(powerup.toString());
+
+    }
+
+    public void setHealthText(int health) {
+        healthText.updateHealth(health);
+    }
+
+    public void gameOver() {
+        spatialInvaders.setScore(score);
+        score = 0;
+        spatialInvaders.setActiveScene(0);
+    }
+
+    public void setScoreMultiplier(int i) {
+        scoreMultiplier = i;
     }
 }

@@ -25,7 +25,7 @@ public class Asteroid extends MovingObject implements Newtonian, SceneBorderTouc
     public void onCollision(List<Collider> list) {
         Collider c = list.getFirst();
         if (c instanceof Spaceship s) {
-            s.takeDamage();
+            s.takeDamage(1);
             this.remove();
         }
 

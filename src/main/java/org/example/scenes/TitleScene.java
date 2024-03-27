@@ -9,10 +9,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import org.example.SpatialInvaders;
 import org.example.entities.buttons.StartButton;
+import org.example.entities.text.ScoreTextEntity;
 
 public class TitleScene extends StaticScene {
 
     private final SpatialInvaders game;
+    private ScoreTextEntity scoreText;
 
     public TitleScene(SpatialInvaders game) {
         this.game = game;
@@ -35,5 +37,13 @@ public class TitleScene extends StaticScene {
 
         addEntity(title);
         addEntity(startButton);
+        if (scoreText != null) {
+            addEntity(scoreText);
+        }
+    }
+
+    public void setScore(int score) {
+        this.scoreText = new ScoreTextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 2), score);
+        scoreText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 }
