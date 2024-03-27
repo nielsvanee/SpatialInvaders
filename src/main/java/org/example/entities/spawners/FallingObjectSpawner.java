@@ -10,12 +10,12 @@ import org.example.scenes.GameScene;
 
 import java.util.Random;
 
-public class MovingObjectSpawner extends EntitySpawner {
+public class FallingObjectSpawner extends EntitySpawner {
 
     private final GameScene game;
     private final double sceneWidth;
 
-    public MovingObjectSpawner(double sceneWidth, long intervalInMs, GameScene game) {
+    public FallingObjectSpawner(double sceneWidth, long intervalInMs, GameScene game) {
         super(intervalInMs);
         this.sceneWidth = sceneWidth;
         this.game = game;

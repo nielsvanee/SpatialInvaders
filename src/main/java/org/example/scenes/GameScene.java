@@ -5,21 +5,45 @@ import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import javafx.scene.paint.Color;
+import org.example.SpatialInvaders;
 import org.example.entities.Spaceship;
+import org.example.entities.powerups.DoubleScore;
+import org.example.entities.powerups.Powerup;
+import org.example.entities.powerups.Speed;
 import org.example.entities.spawners.BulletSpawner;
-import org.example.entities.spawners.MovingObjectSpawner;
+import org.example.entities.spawners.FallingObjectSpawner;
+import org.example.entities.text.HealthTextEntity;
+import org.example.entities.text.PowerupTextEntity;
+import org.example.entities.text.ScoreTextEntity;
 import org.example.settings.GameSettings;
+
+import java.util.Random;
 
 public class GameScene extends DynamicScene implements EntitySpawnerContainer {
 
-    private final GameSettings difficulty;
-    private Spaceship player;
-    private int score;
+    private final SpatialInvaders spatialInvaders;
 
-    public GameScene(GameSettings difficulty) {
+    private final GameSettings difficulty;
+
+    private Spaceship player;
+    private final HealthTextEntity healthText;
+    private final ScoreTextEntity scoreText;
+    private final PowerupTextEntity powerupText;
+
+    private int score;
+    private int scoreMultiplier;
+
+    private Powerup powerup;
+
+    public GameScene(SpatialInvaders spatialInvaders, GameSettings difficulty) {
         super();
+        this.spatialInvaders = spatialInvaders;
         this.difficulty = difficulty;
         this.score = 0;
+        this.scoreMultiplier = 1;
+        this.healthText = new HealthTextEntity(new Coordinate2D(10, 10), difficulty.getStartHealth());
+        this.scoreText = new ScoreTextEntity(new Coordinate2D(10, 30), score);
+        this.powerupText = new PowerupTextEntity(new Coordinate2D(10, 50));
     }
 
     @Override
@@ -29,14 +53,17 @@ public class GameScene extends DynamicScene implements EntitySpawnerContainer {
 
     @Override
     public void setupEntities() {
-        player = new Spaceship(new Coordinate2D(getWidth() / 2, getHeight() - 50), new Size(50, 50), difficulty.getStartHealth());
+        player = new Spaceship(new Coordinate2D(getWidth() / 2, getHeight() - 50), new Size(50, 50), difficulty.getStartHealth(), this);
 
         addEntity(player);
+        addEntity(healthText);
+        addEntity(scoreText);
+        addEntity(powerupText);
     }
 
     @Override
     public void setupEntitySpawners() {
-        addEntitySpawner(new MovingObjectSpawner(getWidth(), difficulty.getSpawnInterval(), this));
+        addEntitySpawner(new FallingObjectSpawner(getWidth(), difficulty.getSpawnInterval(), this));
         addEntitySpawner(new BulletSpawner(500, player));
     }
 

@@ -4,8 +4,8 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 import org.example.scenes.GameScene;
 import org.example.scenes.TitleScene;
-import org.example.settings.Easy;
 import org.example.settings.GameSettings;
+import org.example.settings.Medium;
 
 /**
  * Hello world!
@@ -14,7 +14,7 @@ import org.example.settings.GameSettings;
 public class SpatialInvaders extends YaegerGame
 {
 
-    private final GameSettings difficulty = new Easy();
+    private final GameSettings difficulty = new Medium();
 
     private final TitleScene titleScene = new TitleScene(this);
 

@@ -10,28 +10,33 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
+import org.example.scenes.GameScene;
 
 import java.util.Set;
 
 public class Spaceship extends DynamicSpriteEntity implements KeyListener, SceneBorderTouchingWatcher, Newtonian, Collider {
 
     private int health;
+    private int speedmultiplier;
+    private final GameScene game;
 
-    public Spaceship(Coordinate2D initialLocation, Size size, int startHealth) {
+    public Spaceship(Coordinate2D initialLocation, Size size, int startHealth, GameScene game) {
         super("entities/spaceship.png", initialLocation, size);
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setGravityConstant(0);
         setFrictionConstant(0.04);
 
         this.health = startHealth;
+        this.speedmultiplier = 1;
+        this.game = game;
     }
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> set) {
         if (set.contains(KeyCode.LEFT)) {
-            setMotion(1, 270d);
+            setMotion(speedmultiplier, 270d);
         } else if (set.contains(KeyCode.RIGHT)) {
-            setMotion(1, 90d);
+            setMotion(speedmultiplier, 90d);
         }
     }
 
@@ -64,5 +69,9 @@ public class Spaceship extends DynamicSpriteEntity implements KeyListener, Scene
 
     public Coordinate2D getLocation() {
         return this.getLocationInScene();
+    }
+
+    public void setScoreMultiplier(int i) {
+        game.setScoreMultiplier(i);
     }
 }
